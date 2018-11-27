@@ -21,11 +21,14 @@ import io
 def read_f_into_Hash_table(file, h_func):
 	insertions = 0
 	words = Hash.HashTable((400000),alpha_value)
+			## why did you choose 400000 instead of any other value?
 	forHash = io.open(file ,'r+', encoding = "UTF-8")
+			## why not just save the file as UTF-8?
 	for line in forHash:
 		a = line.split()
 		#Direguards "words" in file that do not begin witch characters from the alphabet
 		if (a[0] >= 'A' and a[0] <= 'Z') or (a[0] >='a' and a[0] <= 'z'):
+					## you can use a is char instead of the line above 
 			insertions+=1
 			words.insert(a[0] , a[1:len(a)] , h_func)
 	print("load factor :",len(words.table)*.75)
@@ -54,6 +57,9 @@ def computeSimilarity(hash_table,file2,h_func):
 		print (w0.word," ",w1.word, "    similarity: " , similarity )
 		print(w0.word," and ", w1.word ,"take ",c1," and ", c2," comparisons to find respectivly")
 	print("Average number of comparisons per search :",comparisons/searches)
+	
+	
+	#### may be wrong but i thought there was a need to use the absolute value of the dot product
 
 
 
