@@ -20,7 +20,7 @@ import io
 
 def read_f_into_Hash_table(file, h_func):
 	insertions = 0
-	words = Hash.HashTable((400000),alpha_value)
+	words = Hash.HashTable((400000),alpha_value,0)
 	forHash = io.open(file ,'r+', encoding = "UTF-8")
 	for line in forHash:
 		a = line.split()
@@ -28,7 +28,6 @@ def read_f_into_Hash_table(file, h_func):
 		if (a[0] >= 'A' and a[0] <= 'Z') or (a[0] >='a' and a[0] <= 'z'):
 			insertions+=1
 			words.insert(a[0] , a[1:len(a)] , h_func)
-	print("load factor :",len(words.table)*.75)
 	return words
 
 
@@ -51,7 +50,7 @@ def computeSimilarity(hash_table,file2,h_func):
 			denomb = denomb + float(w1.vector[i])*float(w1.vector[i])
 		denom = math.sqrt(denoma)*math.sqrt(denomb)
 		similarity = dotProduct/denom
-		print (w0.word," ",w1.word, "    similarity: " , similarity )
+		#print (w0.word," ",w1.word, "    similarity: " , similarity )
 		print(w0.word," and ", w1.word ,"take ",c1," and ", c2," comparisons to find respectivly")
 	print("Average number of comparisons per search :",comparisons/searches)
 
@@ -71,5 +70,7 @@ for i in range(len(ascii_lowercase)):
 for i in range(1,4):
 	print("\n","Using hash function #:",i)
 	words =read_f_into_Hash_table("glove.6B.50d.txt",i)
+	print("The Load Factor is ",words.loadfactor())
 	computeSimilarity(words,"Apendix-word-List.txt",i)
+
 
