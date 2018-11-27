@@ -22,6 +22,9 @@ class HashTable:
 			if temp.word == k:
 				return temp,count
 			temp=temp.next
+			
+	def loadfactor(self):
+		return self.total_elements*.75
 
 	def hash_function1(self, k):
 		"""the hash function uses only the value
